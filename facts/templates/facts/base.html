@@ -1,0 +1,150 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'facts/style.css' %}">
+    <title>Mima</title>
+</head>
+<body>
+{% block head %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href=''>Home <span class="sr-only">(current)</span></a>
+                </li>
+{#                <li class="nav-item">#}
+{#                    <a class="nav-link" href='/add/'>Add</a>#}
+{#                </li>#}
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Surprise</a>
+                </li>
+            </ul>
+{#            <form class="form-inline my-2 my-lg-0" method="GET" action="{% url 'facts:search' %}">#}
+{#                <input class="form-control mr-sm-2"  type="search" name="search">#}
+{#                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>#}
+{#            </form>#}
+        </div>
+    </nav>
+{% endblock head %}
+{% block head_favicon %}
+    <img src="{% static 'logo5.gif' %}" alt="Mima Logo">
+{% endblock head_favicon %}
+{% block contenthome %}
+    <div class="fastlookAndContent">
+        {% block nav %}
+            <div class="nav">
+                <div class="searchArtist">
+                    <h4>:חפש לפי שם אומן</h4>
+                    {% for letArt in letters %}
+                        <a href='/letter_artists/{{ letArt }}'>{{ letArt }}</a>
+                    {% endfor %}
+                </div>
+                <div class="searchSong">
+                    <h4>:חפש לפי שם שיר</h4>
+                    {% for letSon in letters %}
+                        <a href='/letter_songs/{{ letSon }}'>{{ letSon }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endblock nav %}
+        {% block content %}
+        {% endblock content %}
+    </div>
+{% endblock contenthome %}
+
+{% block footer %}
+    <!-- Footer -->
+    <footer class="page-footer font-small stylish-color-dark pt-4">
+        <!-- Footer Links -->
+        <div class="container text-center text-md-left">
+            <!-- Grid row -->
+            <div class="row">
+                <!-- Grid column -->
+                <div class="col-md-4 mx-auto">
+                    <!-- Content -->
+                    <h5 class="font-weight-bold text-uppercase mt-3 mb-4"></h5>
+                    <p>
+                        Imagine that there is very, very important content here, one that will split your life in two.
+                        Are you done? Excellent! Please share it with us, we would love to know what content is so
+                        important..</p>
+                </div>
+                <!-- Grid column -->
+                <hr class="clearfix w-100 d-md-none">
+                <!-- Grid column -->
+                <div class="col-md-2 mx-auto">
+
+                    <!-- Links -->
+                    <h5 class="font-weight-bold text-uppercase mt-3 mb-4"></h5>
+
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="#">surprise</a>
+                        </li>
+                        <li>
+                            <a href='#'>home</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Grid column -->
+                <hr class="clearfix w-100 d-md-none">
+
+                <!-- Grid column -->
+                <div class="col-md-2 mx-auto">
+
+                    <!-- Links -->
+                    <h5 class="font-weight-bold text-uppercase mt-3 mb-4"></h5>
+
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="#!">about us</a>
+                        </li>
+                        <li>
+                            <a href="#!">search</a>
+                        </li>
+                        <li>
+                    </ul>
+
+                </div>
+            </div>
+            <!-- Call to action -->
+            <ul class="list-unstyled list-inline text-center py-2">
+                <li class="list-inline-item">
+                    <h5 class="mb-1">Register for free</h5>
+                </li>
+                <li class="list-inline-item">
+                    <a href="#!" class="btn btn-danger btn-rounded">Sign up!</a>
+                </li>
+            </ul>
+            <!-- Call to action -->
+            <hr>
+            <!-- Copyright -->
+            <div class="footer-copyright text-center py-3">© 2020 Copyright:
+                <a href="https://mdbootstrap.com/education/bootstrap/"> MDBootstrap.com</a>
+            </div>
+        </div>
+        <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
+
+{% endblock footer %}
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+</body>
+</html>

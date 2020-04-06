@@ -1,0 +1,17 @@
+{% extends 'facts/base.html' %}
+{% block contenthome %}
+    <div class="home">
+             <div class="searchArtist">
+                 <h2>:חפש לפי שם אומן</h2>
+                 {%  for letter in letters %}
+                     <a href="{% url 'facts:letter-artists-list' letter %}">{{ letter }}</a>
+                 {% endfor %}
+              </div>
+             <div class= "searchSong">
+                 <h2>:חפש לפי שם שיר</h2>
+                 {%  for letter in letters %}
+                     <a href="{% url 'facts:letter-songs-list' letter %}">{{ letter }}</a>
+                 {% endfor %}
+             </div>
+    </div>
+{% endblock contenthome %}

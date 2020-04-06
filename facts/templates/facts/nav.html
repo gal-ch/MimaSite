@@ -1,0 +1,18 @@
+{% extends 'facts/base.html' %}
+{% block nav %}
+    <div class="nav">
+        <div class="searchArtist">
+            <h4>חפש לפי שם אומן</h4>
+            {% for letArt in letters %}
+                <a href='/letter_artists/{{ letArt }}'>{{ letArt }}</a>
+            {% endfor %}
+        </div>
+        <div class="searchSong">
+            <h4>חפש לפי שם שיר</h4>
+            {% for letSon in letters %}
+                <a href='/letter_songs/{{ letSon }}'>{{ letSon }}</a>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock nav %}

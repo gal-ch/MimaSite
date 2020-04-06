@@ -1,0 +1,111 @@
+* {
+    box-sizing: border-box;
+}
+
+body, html {
+    margin: 3px ;
+    padding: 0;
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 25px 0 25px 0;
+}
+
+.fastlookAndContent{  /*background*/
+    background: rgba(31, 31, 45, 0.17);
+    padding: 10px 10px 50px 10px;
+    border-radius: 5px;
+    margin-bottom: 200px;
+}
+
+.nav {
+    display: flex;
+    justify-content: center;
+    height: 70px;
+    width: 100%;
+    margin: auto;
+    background-color: rgba(45, 3, 0, 0.22);
+    border-radius: 5px;
+}
+
+.nav .searchArtist, .nav .searchSong {
+    flex-wrap: wrap;
+    align-items: center;
+    display: flex;
+    flex-direction: row-reverse;
+    margin: 0 20px 0 20px;
+}
+
+.nav h4, .nav a{
+    color: #2f180a;
+}
+
+.searchArtist a, .searchSong a {   /*letter frame*/
+    margin-left: 2px;
+    border: 0.7px solid grey;
+    padding: 2px 4px 2px 4px;
+    border-radius: 5px;
+    color: #2f180a;
+}
+
+a {
+    font-family: Arial;
+    text-decoration: none;
+    font-size: 20px;
+    color: black;
+
+}
+
+.home {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 350px;
+    margin: auto;
+    border-radius: 10px;
+    border: 3px solid black;
+    background-color: rgba(45, 3, 0, 0.22);
+}
+
+.home div {
+    margin: auto;
+    text-align: center;
+}
+
+.content {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.resulte, .table{
+    padding:0 5% 30px;
+    display: -moz-flex;
+    display: -webkit-flex;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+
+}
+
+.resulte a, .table a, .table h4{
+  font-size:1.3em;
+  border-radius:4px;
+  padding:15px 30px;
+  margin:4px;
+  background:#ccc;
+  flex: auto;
+}
+
+.oneFact {
+    background: rgba(105, 105, 105, 0.24);
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.search{
+    text-align: center;
+}
+

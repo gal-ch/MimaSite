@@ -1,0 +1,26 @@
+{% extends 'facts/base.html' %}
+{% block content %}
+    <div class="search">
+        <h3>באמנים מצאתי</h3>
+        <div class="artistResult table">
+            {% for result in resulteA %}
+                <a href='/artist_songs/{{ result }}'>{{ result }}</a>
+                {{ value|linebreaks }}
+            {% endfor %}
+        </div>
+        <h3>בשירים מצאתי</h3>
+        <div class="songResult table">
+            {% for result in resulteB %}
+                <a href='/song_fact/{{ result }}'>{{ result }}</a>
+                {{ value|linebreaks }}
+            {% endfor %}
+        </div>
+        <h3>בעובדות מצאתי</h3>
+        <div class="factResult table">
+            {% for result in resulteC %}
+                <h4>{{ result.message }}</h4>
+                {{ value|linebreaks }}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock content %}
