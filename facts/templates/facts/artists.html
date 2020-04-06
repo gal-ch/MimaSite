@@ -1,12 +1,14 @@
 {% extends 'facts/base.html' %}
 {% block content %}
     <div class="content">
-        <h3> מצאנו {{ object_list |length }} שירים </h3>
+        <h2> מצאנו {{ object_list |length }} אמנים </h2>
         <div class="resulte">
-            {% for son in object_list %}
-                <a href='/song_fact/{{ son }}'>{{ son }}</a>
+            {% for artist in object_list %}
+                <a href="{% url 'facts:artists-songs-list' artist %}">{{ artist }}</a>
                 {{ value|linebreaks }}
             {% endfor %}
+
+
         </div>
     </div>
 {% endblock content %}

@@ -10,11 +10,9 @@ class Artist(models.Model):
         return self.name
 
 
-
-
 class Song(models.Model):
     name = models.CharField(max_length=200)
-    artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
+    artist = models.ForeignKey(Artist, on_delete=models.CASCADE,related_name='artist')
 
     def __str__(self):
         return self.name

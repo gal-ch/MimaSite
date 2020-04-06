@@ -13,7 +13,7 @@ class HomeTemplateView(TemplateView):
 
 
 class LetterArtistListView(ListView):
-    template_name = 'facts/artist.html'
+    template_name = 'facts/artists.html'
     model = Artist
 
     def get_queryset(self):
@@ -22,9 +22,27 @@ class LetterArtistListView(ListView):
 
 
 class LetterSongListView(ListView):
-    template_name = 'facts/song.html'
+    template_name = 'facts/songs.html'
     model = Song
 
     def get_queryset(self):
         qs = super(LetterSongListView, self).get_queryset().filter(name__startswith=self.kwargs['letter'])
+        return qs
+
+
+class ArtistSongsListView(ListView):
+    template_name = 'facts/songs.html'
+    model = Song
+
+    def get_queryset(self):
+        qs = super(ArtistSongsListView, self).get_queryset().filter(artist__name=self.kwargs['artist'])
+        return qs
+
+
+class SongsFactListView(ListView):
+    template_name = 'facts/fact.html'
+    model = Fact
+
+    def get_queryset(self):
+        qs = super(SongsFactListView, self).get_queryset().filter(song__id=self.kwargs['pk'])
         return qs
