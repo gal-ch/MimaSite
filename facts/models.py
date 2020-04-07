@@ -25,3 +25,6 @@ class Fact(models.Model):
 
     def __str__(self):
         return f"{self.message}: {self.song.artist.name}"
+
+    def get_song_name(self):
+        return self.song.name

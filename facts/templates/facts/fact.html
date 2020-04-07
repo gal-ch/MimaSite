@@ -1,6 +1,8 @@
 {% extends 'facts/base.html' %}
 {% block content %}
     <div class="content">
+     <h2>{{ song.name }}</h2>
+    <h2>{{ song.artist }}</h2>
         {% for fac in object_list %}
             <p class="oneFact"> {{ fac }}</p>
             {{ value|linebreaks }}

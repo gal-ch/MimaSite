@@ -3,6 +3,7 @@
     <div class="content">
         <h3> מצאנו {{ object_list |length }} שירים </h3>
         <div class="resulte">
+
             {% for song in object_list %}
                 <a href="{% url 'facts:song-facts-list' song.pk %}">{{ song }}</a>
                 {{ value|linebreaks }}
