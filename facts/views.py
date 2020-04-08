@@ -1,5 +1,6 @@
 from django.views.generic import ListView, TemplateView, DetailView
 from .models import Artist, Song, Fact
+from itertools import chain
 letters = [chr(x) for x in range(1488, 1515) if x != 1498 and x != 1503 and x != 1507 and x != 1509 and x != 1501]
 
 
@@ -35,7 +36,7 @@ class ArtistSongsListView(ListView):
     model = Song
 
     def get_queryset(self):
-        qs = super(ArtistSongsListView, self).get_queryset().filter(artist__name=self.kwargs['artist'])
+        qs = super(ArtistSongsListView, self).get_queryset().filter(artist__name=self.kwargs['name'])
         return qs
 
 
@@ -51,3 +52,4 @@ class SongsFactListView(ListView):
         context = super().get_context_data(**kwargs)
         context['song'] = Song.objects.get(id=self.kwargs['pk'])
         return context
+

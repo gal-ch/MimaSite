@@ -4,7 +4,7 @@
         <h2> מצאנו {{ object_list |length }} אמנים </h2>
         <div class="resulte">
             {% for artist in object_list %}
-                <a href="{% url 'facts:artists-songs-list' artist %}">{{ artist }}</a>
+                <a href="{{ artist.get_absolute_url }}">{{ artist }}</a>
                 {{ value|linebreaks }}
             {% endfor %}
 
