@@ -52,4 +52,3 @@ class SongsFactListView(ListView):
         context = super().get_context_data(**kwargs)
         context['song'] = Song.objects.get(id=self.kwargs['pk'])
         return context
-
