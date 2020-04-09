@@ -4,7 +4,7 @@
      <h2>{{ song.name }}</h2>
     <h2>{{ song.artist }}</h2>
         {% for fac in object_list %}
-            <p class="oneFact"> {{ fac }} | {{ fac.author }}</p>
+            <p class="oneFact"> {{ fac.message }} | {{ fac.author }}</p>
             {{ value|linebreaks }}
         {% endfor %}
     </div>

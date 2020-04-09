@@ -54,8 +54,17 @@ class SongsFactListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['song'] = Song.objects.get(id=self.kwargs['pk'])
+        print(Song.objects.get(id=self.kwargs['pk']))
         context['form'] = FactCreateForm()
         return context
+
+    def post(self, request, pk):
+        form = FactCreateForm(request.POST)
+        if not form.is_valid():
+            return self.get(request, pk)
+        form.instance.song = Song.objects.get(id=self.kwargs['pk'])
+        form.save()
+        return redirect(request.path)
 
 
 class SearchView(ListView):
