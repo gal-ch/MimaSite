@@ -1,4 +1,7 @@
-from django.views.generic import ListView, TemplateView, DetailView
+from django.shortcuts import redirect
+from django.views.generic import ListView, TemplateView, DetailView, CreateView
+
+from .forms import FactCreateForm
 from .models import Artist, Song, Fact
 from itertools import chain
 letters = [chr(x) for x in range(1488, 1515) if x != 1498 and x != 1503 and x != 1507 and x != 1509 and x != 1501]
@@ -51,6 +54,7 @@ class SongsFactListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['song'] = Song.objects.get(id=self.kwargs['pk'])
+        context['form'] = FactCreateForm()
         return context
 
 
@@ -86,3 +90,9 @@ class SearchView(ListView):
             self.count = len(qs)
             return qs
         return Artist.objects.none()
+
+
+
+
+
+

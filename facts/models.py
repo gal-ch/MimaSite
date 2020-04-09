@@ -1,7 +1,10 @@
 from django.db import models
 from django.db.models import Q
-# from .utils import unique_slug_generator
-# from django.db.models.signals import pre_save
+from django.urls import reverse
+
+from .utils import song_unique_slug_generator, artist_unique_slug_generator
+
+from django.db.models.signals import pre_save, post_save
 
 
 class ArtistManager(models.Manager):
@@ -14,8 +17,8 @@ class ArtistManager(models.Manager):
 
 
 class Artist(models.Model):
-    name = models.CharField(max_length=200, unique=True)
-    # slug = models.SlugField(blank=True, unique=True)
+    name = models.CharField(max_length=200)
+    slug = models.SlugField(blank=True, unique=True)
     objects = ArtistManager()
 
     def __str__(self):
@@ -23,6 +26,14 @@ class Artist(models.Model):
 
     def get_absolute_url(self):
         return "/artists-songs-list/{name}/".format(name=self.name)
+
+
+def artist_pre_save_receiver(sender, instance, *args, **kwargs):
+    if not instance.slug:
+        instance.slug = artist_unique_slug_generator(instance)
+
+
+pre_save.connect(artist_pre_save_receiver, sender=Artist)
 
 
 class SongManager(models.Manager):
@@ -37,14 +48,22 @@ class SongManager(models.Manager):
 class Song(models.Model):
     name = models.CharField(max_length=200)
     artist = models.ForeignKey(Artist, on_delete=models.CASCADE, related_name='artist')
-    # slug = models.SlugField(blank=True, unique=True)
+    slug = models.SlugField(blank=True, unique=True)
     objects = SongManager()
 
     def __str__(self):
         return self.name
 
     def get_absolute_url(self):
-        return "/artists-songs-list/{pk}/".format(pk=self.pk)
+        return reverse("facts:artists-songs-list", kwargs={"pk": self.pk})
+
+
+def song_pre_save_receiver(sender, instance, *args, **kwargs):
+     if not instance.slug:
+         instance.slug = song_unique_slug_generator(instance)
+
+
+pre_save.connect(song_pre_save_receiver, sender=Song)
 
 
 class FactManager(models.Manager):
@@ -73,11 +92,11 @@ class Fact(models.Model):
         return "/song-facts-list/{pk}/".format(pk=self.pk)
 
 
-# def pre_save_recevier(sender,instance, *args, **kwargs):
-#     if not instance.slug:
-#         instance.slug = unique_slug_generator(instance)
-#
-# pre_save.connect(pre_save_recevier, sender=Artist)
+
 # pre_save.connect(pre_save_recevier, sender=Song)
 
 # To do: fix the slug!
+
+
+
+

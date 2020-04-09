@@ -11,7 +11,10 @@ class NameForm(forms.Form):
     fact = forms.CharField(widget=forms.Textarea)
 
 
-class FactForm(ModelForm):
+class FactCreateForm(ModelForm):
     class Meta:
         model = Fact
-        fields = '__all__'
+        fields = [
+            'message',
+            'author',
+        ]

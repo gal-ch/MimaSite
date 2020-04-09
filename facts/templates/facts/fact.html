@@ -8,4 +8,15 @@
             {{ value|linebreaks }}
         {% endfor %}
     </div>
+    <div class="add-fact">
+        <h2>Add Fact:</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form }}
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+
+
 {% endblock content %}
