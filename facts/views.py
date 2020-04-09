@@ -52,3 +52,37 @@ class SongsFactListView(ListView):
         context = super().get_context_data(**kwargs)
         context['song'] = Song.objects.get(id=self.kwargs['pk'])
         return context
+
+
+class SearchView(ListView):
+    template_name = 'facts/search.html'
+    paginate_by = 20
+    count = 0
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context['count'] = self.count or 0
+        context['query'] = self.request.GET.get('searchVal')
+        return context
+
+    def get_queryset(self):
+        request = self.request
+        query = request.GET.get('searchVal', None)
+
+        if query is not None:
+            artists_results = Artist.objects.search(query)
+            songs_results = Song.objects.search(query)
+            facts_results = Fact.objects.search(query)
+
+            queryset_chain = chain(
+                    artists_results,
+                    songs_results,
+                    facts_results
+            )
+
+            qs = sorted(queryset_chain,
+                        key=lambda instance: instance.pk,
+                        reverse=True)
+            self.count = len(qs)
+            return qs
+        return Artist.objects.none()

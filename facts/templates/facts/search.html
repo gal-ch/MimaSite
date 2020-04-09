@@ -1,26 +1,46 @@
-{% extends 'facts/base.html' %}
+{% extends "facts/base.html" %}
+{% load class_name %}
 {% block content %}
-    <div class="search">
-        <h3>באמנים מצאתי</h3>
-        <div class="artistResult table">
-            {% for result in resulteA %}
-                <a href='/artist_songs/{{ result }}'>{{ result }}</a>
-                {{ value|linebreaks }}
-            {% endfor %}
-        </div>
-        <h3>בשירים מצאתי</h3>
-        <div class="songResult table">
-            {% for result in resulteB %}
-                <a href='/song_fact/{{ result }}'>{{ result }}</a>
-                {{ value|linebreaks }}
-            {% endfor %}
-        </div>
-        <h3>בעובדות מצאתי</h3>
-        <div class="factResult table">
-            {% for result in resulteC %}
-                <h4>{{ result.message }}</h4>
-                {{ value|linebreaks }}
-            {% endfor %}
-        </div>
+
+<div class='row title-row my-5'>
+    <div class='col-12 py-0'>
+        <h3 class='my-0 py-0'>{{ count }} results for <b>{{ query }}</b></h3>
     </div>
+</div>
+
+
+{% for object in object_list %}
+    {% with object|class_name as klass %}
+      {% if klass == 'Artist' %}
+           <div class='row'>
+             <div class='col-12'>
+                Artist: <a href='{{ object.get_absolute_url }}'>{{ object.title }}</a>
+            </div>
+          </div>
+
+      {% elif klass == 'Song' %}
+           <div class='row'>
+             <div class='col-12'>
+                Song: <a href='{{ object.get_absolute_url }}'>{{ object.title }}</a>
+              </div>
+            </div>
+
+      {% elif klass == 'Fact' %}
+           <div class='row'>
+                <div class='col-12'>
+                   Fact: <a href='{{ object.get_absolute_url }}'>{{ object.title }}</a>
+                </div>
+            </div>
+      {% else %}
+           <div class='row'>
+             <div class='col-12 col-lg-8 offset-lg-4'>
+                <a href='{{ object.get_absolute_url }}'>{{ object }} | {{ object|class_name }}</a>
+            </div>
+           </div>
+        {% endif %}
+
+    {% endwith %}
+
+{% empty %}
+{% endfor %}
 {% endblock content %}

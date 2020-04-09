@@ -69,6 +69,9 @@ class Fact(models.Model):
     def get_song_name(self):
         return self.song.name
 
+    def get_absolute_url(self):
+        return "/song-facts-list/{pk}/".format(pk=self.pk)
+
 
 # def pre_save_recevier(sender,instance, *args, **kwargs):
 #     if not instance.slug:

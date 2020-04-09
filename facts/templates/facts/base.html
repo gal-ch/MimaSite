@@ -27,10 +27,10 @@
                     <a class="nav-link" href="#">Surprise</a>
                 </li>
             </ul>
-{#            <form class="form-inline my-2 my-lg-0" method="GET" action="{% url 'facts:search-result' %}">#}
-{#                <input class="form-control mr-sm-2"  type="search" name="search">#}
-{#                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>#}
-{#            </form>#}
+            <form class="form-inline my-2 my-lg-0" method="GET" action="{% url 'facts:search-result' %}">
+                <input class="form-control mr-sm-2"  type="search" name="searchVal">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
 
         </div>
     </nav>
@@ -44,14 +44,14 @@
             <div class="nav">
                 <div class="searchArtist">
                     <h4>:חפש לפי שם אומן</h4>
-                    {% for letArt in letters %}
-                        <a href='/letter_artists/{{ letArt }}'>{{ letArt }}</a>
+                    {% for letter in letters %}
+                        <a href="{% url 'facts:letter-artists-list' letter %}">{{ letter }}</a>
                     {% endfor %}
                 </div>
                 <div class="searchSong">
                     <h4>:חפש לפי שם שיר</h4>
-                    {% for letSon in letters %}
-                        <a href='/letter_songs/{{ letSon }}'>{{ letSon }}</a>
+                    {% for letter in letters %}
+                       <a href="{% url 'facts:letter-songs-list' letter %}">{{ letter }}</a>
                     {% endfor %}
                 </div>
             </div>

@@ -1,5 +1,12 @@
 from django.urls import include, path
-from facts.views import LetterArtistListView, HomeTemplateView, LetterSongListView, ArtistSongsListView, SongsFactListView
+from facts.views import (
+    LetterArtistListView,
+    HomeTemplateView,
+    LetterSongListView,
+    ArtistSongsListView,
+    SongsFactListView,
+    SearchView
+)
 
 app_name = 'facts'
 urlpatterns = [
@@ -8,7 +15,7 @@ urlpatterns = [
     path('letter-songs-list/<str:letter>/', LetterSongListView.as_view(), name='letter-songs-list'),
     path('artists-songs-list/<name>/', ArtistSongsListView.as_view(), name='artists-songs-list'),
     path('song-facts-list/<int:pk>/', SongsFactListView.as_view(), name='song-facts-list'),
-    # path('search-result/<str:pk>/', SongsFactListView.as_view(), name='song-facts-list'),
+    path('search-result/', SearchView.as_view(), name='search-result'),
 ]
 
 
